@@ -34,9 +34,9 @@ jobs:
       - name: Define platform emoji
         run: |
           if [ "${{ inputs.platform_name }}" == "ios" ]; then
-            echo "PLATFORM_EMOJI=:apple:"
+            export PLATFORM_EMOJI=🍎
           elif [ "${{ inputs.platform_name }}" == "android" ]; then
-            echo "PLATFORM_EMOJI=:robot:"
+            export PLATFORM_EMOJI=🤖
           fi
 
       - name: print
