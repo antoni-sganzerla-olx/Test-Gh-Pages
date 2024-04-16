@@ -26,7 +26,7 @@ jobs:
 
       - name: Criar pasta
         run: |
-          mkdir -p "public
+          mkdir -p "public"
 
       - name: Criar arquivo index.html
         run: |
