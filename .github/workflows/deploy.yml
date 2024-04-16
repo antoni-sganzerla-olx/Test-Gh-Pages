@@ -8,6 +8,9 @@ on:
         required: true
         type: string
 
+permissions:
+    id-token: write
+
 jobs:
   generate-content:
     runs-on: ubuntu-latest
