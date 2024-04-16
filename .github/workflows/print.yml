@@ -9,8 +9,11 @@ jobs:
   print:
     runs-on: ubuntu-latest
     steps:
-        - name: Print
-          run: echo ${{ lower(inputs.result) }}
+        - name: Print lower
+          run: echo ${{ inputs.result.lowercase }}
+
+        - name: Print upper
+          run: echo ${{ inputs.result.uppercase }}
 
         - name: Send Success
           if: ${{ inputs.result == 'success' }}
