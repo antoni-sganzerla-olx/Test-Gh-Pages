@@ -37,11 +37,12 @@ jobs:
 
       - name: Upload artifact
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-pages-artifact@v3
         with:
           path: 'public'
 
-      - name: Deploy to Github Pages
+      - name: Deploy to GitHub Pages
+        if: always()
         id: deployment
         uses: actions/deploy-pages@v4
 
