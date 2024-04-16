@@ -5,15 +5,20 @@ on:
             description: 'test result'
             required: true
             type: string
+        platform:
+            description: 'platform'
+            required: true
+            type: string
 jobs:
   print:
     runs-on: ubuntu-latest
     steps:
+        - name: Print
+          run: echo ${{ inputs.result }}
+        
         - name: Print lower
-          run: echo ${{ inputs.result.lowercase }}
-
-        - name: Print upper
-          run: echo ${{ inputs.result.uppercase }}
+          run: |
+            echo "${inputs.platform,,}"
 
         - name: Send Success
           if: ${{ inputs.result == 'success' }}
