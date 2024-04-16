@@ -37,6 +37,6 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: public
-          branch: main
+          branch: reports
           target-folder: ${{ inputs.platform_name }}
 
