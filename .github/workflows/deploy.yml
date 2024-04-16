@@ -24,26 +24,13 @@ jobs:
           echo "Nome da plataforma: ${{ inputs.platform_name }}"
           echo "::set-output name=platform_name::${{ inputs.platform_name }}"
 
-      - name: Criar pasta
-        run: |
-          mkdir -p "public/${{ inputs.platform_name }}"
-
       - name: Criar arquivo index.html
         run: |
-          echo "<html><body><h1>${{ inputs.platform_name }}</h1></body></html>" > "public/${{ inputs.platform_name }}/index.html"
+          echo "<html><body><h1>${{ inputs.platform_name }}</h1></body></html>" > "public/index.html"
 
-      - name: Setup Pages
-        if: always()
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        if: always()
-        uses: actions/upload-pages-artifact@v3
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          path: 'public'
-
-      - name: Deploy to GitHub Pages
-        if: always()
-        id: deployment
-        uses: actions/deploy-pages@v4
+          folder: public
+          target-folder: ${{ inputs.platform_name }}
 
