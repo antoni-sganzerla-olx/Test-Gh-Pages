@@ -7,8 +7,10 @@ on:
         description: 'Nome da plataforma'
         required: true
         type: string
-env:
-  PLATFORM_EMOJI:
+      emoji:
+        description: 'Emoji da plataforma'
+        required: false
+        type: string
 
 permissions:
     id-token: write
@@ -21,31 +23,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Definir nome da plataforma
-        id: set_platform_name
-        run: |
-          echo "Nome da plataforma: ${{ inputs.platform_name }}"
-          echo "::set-output name=platform_name::${{ inputs.platform_name }}"
-
       - name: Criar pasta
         run: |
           mkdir -p "public"
 
-      - name: Define platform emoji
-        run: |
-          if [ "${{ inputs.platform_name }}" == "ios" ]; then
-            export PLATFORM_EMOJI=🍎
-          elif [ "${{ inputs.platform_name }}" == "android" ]; then
-            export PLATFORM_EMOJI=🤖
-          fi
-
-      - name: print
-        run: |
-          echo ${{ env.PLATFORM_EMOJI }}
-
       - name: Criar arquivo index.html
         run: |
-          echo "<html><body><h1>${{ inputs.platform_name }} - ${{ env.PLATFORM_EMOJI }}</h1></body></html>" > "public/index.html"
+          echo "<html><body><h1>${{ inputs.platform_name }} - ${{ inputs.emoji }}</h1></body></html>" > "public/index.html"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
