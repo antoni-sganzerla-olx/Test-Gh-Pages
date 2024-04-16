@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
         - name: Print
-          run: echo ${{ inputs.result }}
+          run: echo ${{ lower(inputs.result) }}
 
         - name: Send Success
           if: ${{ inputs.result == 'success' }}
