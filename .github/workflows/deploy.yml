@@ -31,10 +31,6 @@ jobs:
         run: |
           mkdir -p "public"
 
-      - name: Criar arquivo index.html
-        run: |
-          echo "<html><body><h1>${{ inputs.platform_name }}</h1></body></html>" > "public/index.html"
-
       - name: Define platform emoji
         run: |
           if [ "${{ inputs.platform_name }}" == "ios" ]; then
@@ -45,7 +41,11 @@ jobs:
 
       - name: print
         run: |
-          echo $PLATFORM_EMOJI
+          echo ${{ env.PLATFORM_EMOJI }}
+
+      - name: Criar arquivo index.html
+        run: |
+          echo "<html><body><h1>${{ inputs.platform_name }} - ${{ env.PLATFORM_EMOJI }}</h1></body></html>" > "public/index.html"
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
