@@ -24,6 +24,10 @@ jobs:
           echo "Nome da plataforma: ${{ inputs.platform_name }}"
           echo "::set-output name=platform_name::${{ inputs.platform_name }}"
 
+      - name: Criar pasta
+        run: |
+          mkdir -p "public
+
       - name: Criar arquivo index.html
         run: |
           echo "<html><body><h1>${{ inputs.platform_name }}</h1></body></html>" > "public/index.html"
