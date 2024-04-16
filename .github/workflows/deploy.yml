@@ -7,6 +7,8 @@ on:
         description: 'Nome da plataforma'
         required: true
         type: string
+env:
+  PLATFORM_EMOJI:
 
 permissions:
     id-token: write
@@ -32,6 +34,18 @@ jobs:
       - name: Criar arquivo index.html
         run: |
           echo "<html><body><h1>${{ inputs.platform_name }}</h1></body></html>" > "public/index.html"
+
+      - name: Define platform emoji
+        run: |
+          if [ "${{ inputs.platform_name }}" == "ios" ]; then
+            echo "PLATFORM_EMOJI=:apple:"
+          elif [ "${{ inputs.platform_name }}" == "android" ]; then
+            echo "PLATFORM_EMOJI=:robot:"
+          fi
+
+      - name: print
+        run: |
+          echo $PLATFORM_EMOJI
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
